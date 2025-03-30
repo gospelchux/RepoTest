@@ -1,12 +1,9 @@
-# How to run the Automated Script
+# How to run the Automated Script | All files for the test are in the repo
 
 Instructions to Run the Automated Test Script
 
 **Pre-requisites**
-1. **Install Java**: Ensure Java (JDK 8 or later) is installed. Verify with:
-   ```sh
-   java -version
-   ```
+1. **Install Java**: Ensure Java (JDK 8 or later) is installed. 
 2. **Install Maven**: Check if Maven is installed using:
    ```sh
    mvn -version
