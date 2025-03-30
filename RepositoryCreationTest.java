@@ -1,27 +1,31 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 
 public class RepositoryCreationTest {
     WebDriver driver;
 
-    @BeforeClass
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+    @BeforeTest
+    public void prepareBrowser(){
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://repository-management-app.com/login");
+        driver.get("https://github.com/login");
     }
+    @AfterTest
+    public void closeBrowser(){
+        driver.quit();
+    }
+
 
     @Test
     public void testRepositoryCreation() {
         // Login
-        driver.findElement(By.id("username")).sendKeys("testUser");
+        driver.findElement(By.id("email")).sendKeys("gospel@test.com");
         driver.findElement(By.id("password")).sendKeys("password123");
         driver.findElement(By.id("loginButton")).click();
 
@@ -35,8 +39,4 @@ public class RepositoryCreationTest {
         Assert.assertTrue(successMessage.isDisplayed(), "Repository was not created successfully");
     }
 
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-    }
 }
